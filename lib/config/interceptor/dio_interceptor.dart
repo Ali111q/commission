@@ -10,7 +10,8 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class DioHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'https://garagat-api.digital-logic.tech/api';
+  // static const String baseUrls = 'http://192.168.1.30:5002/api';
+  static const String baseUrls = 'https://garages-api.future-wave.co/api';
 
   @override
   void onInit() {
@@ -25,29 +26,23 @@ class DioHttp extends GetxController {
       ..options.receiveTimeout = const Duration(seconds: 120)
       ..options.contentType = 'application/json; charset=utf-8'
       ..options.headers = {"accept": "*/*", "Content-Type": "application/json"};
-    dio.interceptors.add(
-      AwesomeDioInterceptor(),
-    );
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      String? token = prefs.getString('token');
-      if (token == null) {
-        options.headers.addAll({
-          HttpHeaders.authorizationHeader:
-              "Bearer ${prefs.getString('verifyToken')}",
-        });
-      } else {
+      String? token =
+          prefs.getString('token') ?? prefs.getString('verifyToken');
+
+      if (token != null && token.isNotEmpty) {
         options.headers.addAll({
           HttpHeaders.authorizationHeader: "Bearer $token",
         });
-        prefs.remove('verifyToken');
+
+        if (prefs.getString('token') == null) {
+          prefs.remove('verifyToken');
+        }
       }
 
-      // Logger()
-      //     .d('${options.queryParameters}\n ${options.path} \n ${options.data}');
-
-      return handler.next(options); //continue
+      return handler.next(options); // continue
     }, onResponse: (response, handler) async {
       handleResponse(response);
 
@@ -55,7 +50,7 @@ class DioHttp extends GetxController {
     }, onError: (DioError e, handler) async {
       handleError(e);
 
-      return handler.next(e); //continue
+      return handler.next(e); // continue
     }));
   }
 
@@ -90,9 +85,7 @@ class DioHttp extends GetxController {
       try {
         noti('Error'.tr,
             e.response?.data['message'] ?? e.response?.data['error']);
-      } catch (s) {
-        noti('Error'.tr, s.toString());
-      }
+      } catch (s) {}
 
       Logger().d(e.response?.statusCode);
       Logger().d(e.response?.data);

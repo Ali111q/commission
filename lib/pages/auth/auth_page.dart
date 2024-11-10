@@ -1,4 +1,5 @@
 import 'package:Trip/config/const_wodget/custom_fill_button.dart';
+import 'package:Trip/config/const_wodget/custom_scaffold.dart';
 import 'package:Trip/config/const_wodget/custom_text_form_field.dart';
 
 import 'package:Trip/config/validator/validators.dart';
@@ -13,7 +14,7 @@ class AuthPage extends StatelessWidget {
   final AuthController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomScaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -24,7 +25,7 @@ class AuthPage extends StatelessWidget {
               width: Get.width * 0.4,
               onTap: () {},
             ),
-            Text("مرحبا بك في تكت"),
+            Text("مرحبا بك في تطبيق الهيئة"),
             Text("تسجيل الدخول للمتابعة"),
             Center(
               child: SvgPicture.asset(
@@ -68,18 +69,18 @@ class AuthPage extends StatelessWidget {
                       Container(
                         height: 15,
                       ),
-                      Row(
-                        children: [
-                          Obx(
-                            () => Checkbox.adaptive(
-                                checkColor: Colors.black,
-                                activeColor: Colors.white,
-                                value: controller.saveData.value,
-                                onChanged: controller.toggleSaveData),
-                          ),
-                          Text("حفظ المعلومات")
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Obx(
+                      //       () => Checkbox.adaptive(
+                      //           checkColor: Colors.black,
+                      //           activeColor: Colors.white,
+                      //           value: controller.saveData.value,
+                      //           onChanged: controller.toggleSaveData),
+                      //     ),
+                      //     Text("حفظ المعلومات")
+                      //   ],
+                      // ),
                       Container(
                         height: 15,
                       ),
@@ -94,7 +95,7 @@ class AuthPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: 5,
+                        height: 30,
                       ),
                     ],
                   )),

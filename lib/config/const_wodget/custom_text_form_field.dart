@@ -73,13 +73,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           widget.showLabelStar
               ? RichText(
                   text: TextSpan(
-                      text: widget.label!.tr,
+                      text: widget.label?.tr,
                       style: Theme.of(context).textTheme.titleMedium,
                       children: const [
                       TextSpan(text: " *", style: TextStyle(color: Colors.red))
                     ]))
               : Text(
-                  widget.label!.tr,
+                  widget.label != null ? widget.label!.tr : '',
                   // getTranslated(context, label!),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
@@ -129,7 +129,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 : Theme.of(context).colorScheme.surface.withOpacity(1),
             focusColor: context.theme.colorScheme.error,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(Insets.small),
               borderSide: BorderSide(
                 width: 1,
                 color: context.theme.colorScheme.outline.withOpacity(0.2),
@@ -137,7 +137,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(Insets.small),
               borderSide: BorderSide(
                 width: 1,
                 color: context.theme.colorScheme.outline.withOpacity(0.2),
@@ -145,7 +145,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(Insets.small),
               borderSide: BorderSide(
                 width: 1,
                 color: Colors.red.shade200,
@@ -153,7 +153,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(Insets.small),
               borderSide: BorderSide(
                 width: 1,
                 color: Colors.red.shade200,

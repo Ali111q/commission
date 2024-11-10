@@ -1,6 +1,8 @@
 import 'package:Trip/config/constant.dart';
 import 'package:flutter/material.dart';
 
+import 'custom_scaffold.dart';
+
 class OpenImage extends StatefulWidget {
   final String img;
   const OpenImage({super.key, required this.img});
@@ -13,7 +15,7 @@ class _OpenImageState extends State<OpenImage> {
   int quarterTurns = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomScaffold(
       appBar: AppBar(
         title: Text('Image View'.tr),
         backgroundColor: context.theme.cardColor,

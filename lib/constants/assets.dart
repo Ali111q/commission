@@ -1,4 +1,7 @@
 class Assets {
+  static String assetsIconsGalery = "assets/icons/galery.svg";
+  static String assetsIconsflip = "assets/icons/flip.svg";
+
   Assets._();
 
   /// Assets for assetsIconsHourglassHigh
@@ -12,11 +15,19 @@ class Assets {
 
   /// Assets for assetsImagesLogo
   /// assets/images/logo.png
-  static const String assetsImagesLogo = "assets/images/logo.png";
+  static const String assetsImagesLogo = "assets/images/logo.jpg";
 
   /// Assets for assetsImagesAvatar
   /// assets/images/avatar.png
   static const String assetsImagesAvatar = "assets/images/avatar.png";
+
+  /// Assets for assetsIconsProfile
+  /// assets/icons/profile.svg
+  static const String assetsIconsProfile = "assets/icons/profile.svg";
+
+  /// Assets for assetsIconsCategory
+  /// assets/icons/category.svg
+  static const String assetsIconsCategory = "assets/icons/category.svg";
 
   /// Assets for assetsIconsChecks
   /// assets/icons/Checks.svg

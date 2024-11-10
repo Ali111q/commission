@@ -27,9 +27,9 @@ class Insets {
   // static double medium = Device.get().isPhone ? 20 : 30;
   // static double small = Device.get().isPhone ? 10 : 20;
   // static double exSmall = Device.get().isPhone ? 5 : 10;
-  static double exLarge = 40;
-  static double large = 30;
-  static double medium = 20;
-  static double small = 10;
-  static double exSmall = 5;
+  static const double exLarge = 40;
+  static const double large = 30;
+  static const double medium = 20;
+  static const double small = 10;
+  static const double exSmall = 5;
 }

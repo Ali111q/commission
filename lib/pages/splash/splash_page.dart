@@ -1,8 +1,10 @@
 import 'package:Trip/constants/assets.dart';
 import 'package:Trip/pages/auth/auth_page.dart';
+import 'package:Trip/pages/camera/camera_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../config/const_wodget/custom_scaffold.dart';
 import '../../config/const_wodget/hero_widget.dart';
 import '../../main.dart';
 
@@ -19,12 +21,11 @@ class _SplashPageState extends State<SplashPage> {
     // TODO: implement initState
 
     Future.delayed(Duration(seconds: 2), () {
-      // if (prefs.getString("token") == null) {
-      Get.offAll(AuthPage());
-      // }
-      // else {
-      //   Get.offAllNamed("/navigation");
-      // }
+      if (prefs.getString("token") == null) {
+        Get.offAll(AuthPage());
+      } else {
+        Get.offAll(CameraPage());
+      }
     });
     super.initState();
   }

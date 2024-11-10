@@ -82,6 +82,7 @@ class CustomOutLineButton extends StatelessWidget {
   final Color? color;
   final void Function()? onTap;
   final Color? backgroundColor;
+  final double? borderRadius;
   CustomOutLineButton({
     super.key,
     required this.title,
@@ -92,6 +93,7 @@ class CustomOutLineButton extends StatelessWidget {
     this.onTap,
     this.isLoading = false,
     this.backgroundColor,
+    this.borderRadius
   });
 
   @override
@@ -103,7 +105,7 @@ class CustomOutLineButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: Insets.medium, vertical: padding ?? Insets.small + 4),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Insets.large),
+          borderRadius: BorderRadius.circular(borderRadius?? Insets.large),
           color: backgroundColor ?? Colors.transparent,
           border: Border.all(
             color: color ?? context.theme.colorScheme.onPrimaryContainer,

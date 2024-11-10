@@ -1,6 +1,8 @@
 import 'package:Trip/config/constant.dart';
 
 import 'package:Trip/main.dart';
+import 'package:Trip/pages/auth/auth_page.dart';
+import 'package:Trip/pages/camera/camera_page.dart';
 
 import '../config/utils/routes.dart';
 import '../data/api/auth_api.dart';
@@ -42,7 +44,10 @@ class AuthController extends GetxController {
         prefs.setString("id", user.id);
         prefs.setString("email", user.email);
         prefs.setString("fullname", user.fullName);
-        Get.offAllNamed(AppRoutes.navigation);
+        prefs.setString("creationDate", user.creationDate.toIso8601String());
+        prefs.setString("garageId", user.garageId);
+        prefs.setString("garageName", user.garageName);
+        Get.offAll(CameraPage());
       }
     }
   }
@@ -52,6 +57,6 @@ class AuthController extends GetxController {
     prefs.remove("id");
     prefs.remove("email");
     prefs.remove("fullname");
-    Get.offAllNamed(AppRoutes.auth);
+    Get.offAll(AuthPage());
   }
 }

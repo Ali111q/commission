@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 Future<dynamic> customBottomSheet(BuildContext context,
-    {Widget? child, double? height}) {
+    {Widget? child, double? height, ScrollController? ScrollController}) {
   return Get.bottomSheet(
     Container(
       width: context.width,
       constraints: BoxConstraints(
-        maxHeight: height ?? context.height * 0.8,
+        maxHeight: height ?? context.height * 0.9,
         minHeight: context.height * 0.2,
       ),
       decoration: BoxDecoration(
@@ -23,19 +23,14 @@ Future<dynamic> customBottomSheet(BuildContext context,
           topRight: Radius.circular(Insets.medium),
         ),
       ),
-      child: Column(
-        children: [
-          Gap(Insets.small),
-          Container(
-            width: context.width * 0.2,
-            height: Insets.exSmall,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Insets.medium),
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
-            ),
-          ),
-          child ?? Gap(Insets.small),
-        ],
+      child: SingleChildScrollView(
+        controller: ScrollController,
+        child: Column(
+          children: [
+            Gap(Insets.small),
+            child ?? Gap(Insets.small),
+          ],
+        ),
       ),
     ),
     enterBottomSheetDuration: const Duration(milliseconds: 400),
