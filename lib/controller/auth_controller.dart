@@ -45,8 +45,8 @@ class AuthController extends GetxController {
         prefs.setString("email", user.email);
         prefs.setString("fullname", user.fullName);
         prefs.setString("creationDate", user.creationDate.toIso8601String());
-        prefs.setString("garageId", user.garageId);
-        prefs.setString("garageName", user.garageName);
+        // prefs.setString("garageId", user.garageId);
+        // prefs.setString("garageName", user.garageName);
         Get.offAll(CameraPage());
       }
     }

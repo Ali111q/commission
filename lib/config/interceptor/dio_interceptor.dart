@@ -26,7 +26,7 @@ class DioHttp extends GetxController {
       ..options.receiveTimeout = const Duration(seconds: 120)
       ..options.contentType = 'application/json; charset=utf-8'
       ..options.headers = {"accept": "*/*", "Content-Type": "application/json"};
-
+    dio.interceptors.add(AwesomeDioInterceptor());
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       String? token =

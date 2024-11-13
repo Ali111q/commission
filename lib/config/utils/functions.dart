@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:Trip/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:intl/intl.dart';
 import 'package:tuple/tuple.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,4 +117,41 @@ SnackbarController noti(title, body, {Function(GetSnackBar)? onTap}) {
     onTap: onTap,
   );
   return x;
+}
+
+extension ImageCompression on File {
+  Future<File?> compressImage({
+    int minWidth = 800,
+    int minHeight = 800,
+    int quality = 80,
+  }) async {
+    // Check if file exists
+    if (!await exists()) {
+      print("File does not exist");
+      return null;
+    }
+
+    // Load the image bytes
+    final imageBytes = await readAsBytes();
+
+    // Compress the image
+    final compressedBytes = await FlutterImageCompress.compressWithList(
+      imageBytes,
+      minWidth: minWidth,
+      minHeight: minHeight,
+      quality: quality,
+    );
+
+    if (compressedBytes == null) {
+      print("Compression failed");
+      return null;
+    }
+
+    // Create a new file with compressed image data
+    final compressedFile =
+        File(path.replaceFirst(RegExp(r'\.\w+$'), '_compressed.jpg'));
+    await compressedFile.writeAsBytes(compressedBytes);
+
+    return compressedFile;
+  }
 }

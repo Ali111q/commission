@@ -12,21 +12,22 @@ class CustomFillButton extends StatelessWidget {
   final Widget? icon;
   final double? width;
   final double? padding;
+  final Border? border;
   bool isLoading;
   final TextStyle? textStyle;
-  CustomFillButton({
-    super.key,
-    required this.title,
-    this.color,
-    this.loading,
-    this.isLoading = false,
-    this.onTap,
-    this.backgroundColor,
-    this.icon,
-    this.width,
-    this.textStyle,
-    this.padding,
-  });
+  CustomFillButton(
+      {super.key,
+      required this.title,
+      this.color,
+      this.loading,
+      this.isLoading = false,
+      this.onTap,
+      this.backgroundColor,
+      this.icon,
+      this.width,
+      this.textStyle,
+      this.padding,
+      this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class CustomFillButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: Insets.medium, vertical: padding ?? Insets.small + 4),
           decoration: BoxDecoration(
+            border: border,
             borderRadius: BorderRadius.circular(Insets.small),
             color:
                 backgroundColor ?? color ?? context.theme.colorScheme.primary,
@@ -83,18 +85,17 @@ class CustomOutLineButton extends StatelessWidget {
   final void Function()? onTap;
   final Color? backgroundColor;
   final double? borderRadius;
-  CustomOutLineButton({
-    super.key,
-    required this.title,
-    this.loading,
-    this.icon,
-    this.padding,
-    this.color,
-    this.onTap,
-    this.isLoading = false,
-    this.backgroundColor,
-    this.borderRadius
-  });
+  CustomOutLineButton(
+      {super.key,
+      required this.title,
+      this.loading,
+      this.icon,
+      this.padding,
+      this.color,
+      this.onTap,
+      this.isLoading = false,
+      this.backgroundColor,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +106,7 @@ class CustomOutLineButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: Insets.medium, vertical: padding ?? Insets.small + 4),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius?? Insets.large),
+          borderRadius: BorderRadius.circular(borderRadius ?? Insets.large),
           color: backgroundColor ?? Colors.transparent,
           border: Border.all(
             color: color ?? context.theme.colorScheme.onPrimaryContainer,

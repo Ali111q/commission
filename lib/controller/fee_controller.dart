@@ -118,7 +118,11 @@ class FeesController extends GetxController {
     var res = await _feesApi.getFees(page);
     this.page.value = res.page;
     totalPage = res.totalPages;
-    fees.value = res.data;
+    if (page == 1) {
+      fees.value = res.data;
+    } else {
+      fees.addAll(res.data);
+    }
   }
 
   void handleSelectGovernurate(
@@ -214,8 +218,9 @@ class FeesController extends GetxController {
     }
   }
 
-  void setImage(List<File?> path) {
-    imagePath.value = path.map((e) => e!).toList();
+  void setImage(List<File?> path) async {
+    imagePath.value = await Future.wait(
+        path.map((e) async => (await e!.compressImage())!).toList());
   }
 
   clearData() {

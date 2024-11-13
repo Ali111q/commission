@@ -34,18 +34,24 @@ class Violationlosttab extends StatelessWidget {
                       })
                 ],
               ))
-            : PaginatedList(
-                data: controller.fees,
-                refreshController: refreshController,
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => _buildListWidget(index),
-                    separatorBuilder: (context, index) => Gap(Insets.small),
-                    itemCount: controller.fees.length),
-                controller: null,
-                pages: controller.page,
-                getData: controller.getFees,
-                totalPage: controller.totalPage),
+            : Obx(
+                () => PaginatedList(
+                    data: controller.fees,
+                    refreshController: refreshController,
+                    child: ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) =>
+                            _buildListWidget(index),
+                        separatorBuilder: (context, index) => Gap(Insets.small),
+                        itemCount: controller.fees.length),
+                    controller: null,
+                    pages: controller.page,
+                    getData: (e) {
+                      print(e);
+                      controller.getFees(e);
+                    },
+                    totalPage: controller.totalPage),
+              ),
       ),
     );
   }

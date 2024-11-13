@@ -21,7 +21,7 @@ class FeesApi {
 
   Future<PaggingModel<FeeModel>> getFees(int page) async {
     final res = await BaseClient.get(
-        api: '/commission/vehicle-fees', queryParameters: {"page": page});
+        api: '/commission/vehicle-fees', queryParameters: {"pageNumber": page});
     return PaggingModel.fromJson(res, (json) => FeeModel.fromJson(json));
   }
 

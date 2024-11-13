@@ -83,7 +83,7 @@ class FeeModel {
         plateTypeId: json["plateTypeId"],
         plateTypeName: json["vehiclePlateType"] ?? json['plateTypeName'],
         feeFinesId: json["feeFinesId"],
-        feeFinesName: json["feeFines"]["name"],
+        feeFinesName: json['feeFines'] != null ? json["feeFines"]["name"] : "",
         garageId: json["garageId"],
         garageName: json["garageName"],
         amount: json["amount"],
@@ -96,7 +96,9 @@ class FeeModel {
         garagePaymentName: json["garagePaymentName"],
         invoiceNumber: json["invoiceNumber"].toString(),
         isDirect: json["isDirect"] ?? true,
-        images: List<String>.from(json["images"]?.map((x) => x) ?? []),
+        images: List<String>.from(json["images"]
+                ?.map((x) => "https://garages-api.future-wave.co/" + x) ??
+            []),
         note: json["note"],
         lat: json["lat"],
         lng: json["lng"],

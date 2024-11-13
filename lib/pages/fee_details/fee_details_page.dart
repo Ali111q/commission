@@ -200,12 +200,24 @@ class _FeeDetailsPageState extends State<FeeDetailsPage> {
                     Expanded(
                       flex: 1,
                       child: CustomFillButton(
+                        border: !(controller.feesModel.value?.isPaid ?? true)
+                            ? Border.all()
+                            : null,
                         title: "دفع",
-                        backgroundColor: Colors.grey,
+                        textStyle: TextStyle(
+                          color: (controller.feesModel.value?.isPaid ?? true)
+                              ? Colors.white
+                              : Color(0xff0071FF),
+                        ),
+                        backgroundColor:
+                            (controller.feesModel.value?.isPaid ?? true)
+                                ? Colors.grey
+                                : Colors.white,
                         onTap: () async {
                           // await connectToUsbPrinter(devices.first);
                           // testPrinter();
-                          if (controller.feesModel.value != null)
+                          if (controller.feesModel.value != null &&
+                              !controller.feesModel.value!.isPaid)
                             controller.payFine(
                                 controller.feesModel.value!.id, 6);
                         },
